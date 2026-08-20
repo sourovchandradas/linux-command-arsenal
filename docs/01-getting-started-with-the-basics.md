@@ -144,6 +144,7 @@ find /etc -type f -name *apache*   # Match anywhere
 
 ---
 
+<a id="piping-section"></a>
 ## Piping (|)
 
 Pipe output from one command to another:
