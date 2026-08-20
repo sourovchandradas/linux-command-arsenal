@@ -12,7 +12,7 @@
 - [Getting Help](#getting-help)
 - [Man page navigation](#man-page-navigation)
 - [Important Directories](#important-directories)
-- [Piping (|)](#piping)
+- [Piping (|)](#piping-sections)
 - [Key Tips](#key-tips)
 - [Quick Command Chains](#quick-command-chains)
 - [Quick Start](#quick-start)
