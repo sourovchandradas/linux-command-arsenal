@@ -1,21 +1,21 @@
 # Getting Started with Linux Basics
 
 # Table of Contents
-[Introduction](#introduction)
-[Navigation Commands](#navigation-commands)
-[File & Directory Listing](#file-&-directory-listing)
-[File & Directory Operations](#file-&-directory-operations)
-[User & System Info](#user-&-system-info)
-[Finding & Searching](#finding-&-searching)
-[Find Command Options](#find-command-options)
-[Wildcards](#wildcards)
-[Getting Help](#getting-help)
-[Man page navigation](#man-page-navigation)
-[Important Directories](#important-directories)
-[Piping](#piping)
-[Key Tips](#key-tips)
-[Quick Command Chains](#quick-command-chains)
-[Quick Start](#quick-start)
+- [Introduction](#introduction)
+- [Navigation Commands](#navigation-commands)
+- [File & Directory Listing](#file-&-directory-listing)
+- [File & Directory Operations](#file-&-directory-operations)
+- [User & System Info](#user-&-system-info)
+- [Finding & Searching](#finding-&-searching)
+- [Find Command Options](#find-command-options)
+- [Wildcards](#wildcards)
+- [Getting Help](#getting-help)
+- [Man page navigation](#man-page-navigation)
+- [Important Directories](#important-directories)
+- [Piping](#piping)
+- [Key Tips](#key-tips)
+- [Quick Command Chains](#quick-command-chains)
+- [Quick Start](#quick-start)
 
 Quick reference guide for essential Linux commands : Getting Started with the Basics
 
