@@ -17,6 +17,8 @@
 - [Quick Command Chains](#quick-command-chains)
 - [Quick Start](#quick-start)
 
+## Introduction
+
 Quick reference guide for essential Linux commands : Getting Started with the Basics
 
 ---
