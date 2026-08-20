@@ -193,5 +193,5 @@ mkdir mynewdir && cd mynewdir
 
 ---
 
-**Quick Start:** Login as root → Open terminal → Use `pwd` to see location → Use `cd` to navigate → Use `ls -la` to explore → Use `man <command>` for detailed help
+## Quick Start: Login as root → Open terminal → Use `pwd` to see location → Use `cd` to navigate → Use `ls -la` to explore → Use `man <command>` for detailed help
 
