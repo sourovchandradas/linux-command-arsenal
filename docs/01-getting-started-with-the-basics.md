@@ -12,7 +12,7 @@
 - [Getting Help](#getting-help)
 - [Man page navigation](#man-page-navigation)
 - [Important Directories](#important-directories)
-- [Piping (|)](#piping-sections)
+- [Piping (|)](#piping)
 - [Key Tips](#key-tips)
 - [Quick Command Chains](#quick-command-chains)
 - [Quick Start](#quick-start)
@@ -193,5 +193,6 @@ mkdir mynewdir && cd mynewdir
 
 ---
 
-## Quick Start: Login as root → Open terminal → Use `pwd` to see location → Use `cd` to navigate → Use `ls -la` to explore → Use `man <command>` for detailed help
+## Quick Start
+Login as root → Open terminal → Use `pwd` to see location → Use `cd` to navigate → Use `ls -la` to explore → Use `man <command>` for detailed help
 
