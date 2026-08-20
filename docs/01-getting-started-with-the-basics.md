@@ -3,10 +3,10 @@
 # Table of Contents
 - [Introduction](#introduction)
 - [Navigation Commands](#navigation-commands)
-- [File & Directory Listing](#file-&-directory-listing)
-- [File & Directory Operations](#file-&-directory-operations)
-- [User & System Info](#user-&-system-info)
-- [Finding & Searching](#finding-&-searching)
+- [File & Directory Listing](#file--directory-listing)
+- [File & Directory Operations](#file--directory-operations)
+- [User & System Info](#user--system-info)
+- [Finding & Searching](#finding--searching)
 - [Find Command Options](#find-command-options)
 - [Wildcards](#wildcards)
 - [Getting Help](#getting-help)
@@ -116,7 +116,7 @@ find /etc -type f -name *apache*   # Match anywhere
 | `<command> -h` | Show help (short form) | `nmap -h` |
 | `man <command>` | Open manual page | `man aircrack-ng` |
 
-**Man page navigation:**
+## Man page navigation
 - `Enter` - Scroll down
 - `Pg Dn` / `Pg Up` - Page down/up
 - `Arrow keys` - Move cursor
