@@ -12,7 +12,7 @@
 - [Getting Help](#getting-help)
 - [Man page navigation](#man-page-navigation)
 - [Important Directories](#important-directories)
-- [Piping](#piping)
+- [Piping (|)](#piping-sections)
 - [Key Tips](#key-tips)
 - [Quick Command Chains](#quick-command-chains)
 - [Quick Start](#quick-start)
@@ -90,8 +90,8 @@ Quick reference guide for essential Linux commands : Getting Started with the Ba
 find directory options expression
 
 # Search by type
-find / -type f -name filename    # Search for files
-find / -type d -name dirname     # Search for directories
+find / -type f -name filename      # Search for files
+find / -type d -name dirname       # Search for directories
 
 # Using wildcards
 find /etc -type f -name apache2.*  # Match extensions
@@ -149,9 +149,9 @@ find /etc -type f -name *apache*   # Match anywhere
 Pipe output from one command to another:
 
 ```bash
-ps aux | grep apache2     # Search process list for apache2
-ps aux | grep ssh         # Find SSH processes
-command1 | command2       # Send output of command1 to command2
+ps aux | grep apache2      # Search process list for apache2
+ps aux | grep ssh          # Find SSH processes
+command1 | command2        # Send output of command1 to command2
 ```
 
 ---
