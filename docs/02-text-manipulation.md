@@ -71,7 +71,7 @@ nl /etc/snort/snort.conf
 | Command | Usage | Example |
 | --- | --- | --- |
 | `grep <keyword> <file>` | Search for a specific word/phrase | `grep output /etc/snort/snort.conf` |
-| `<command> /| grep <keyword>` | Filter piped command output | `cat /etc/snort/snort.conf | grep output` |
+| `<command> | grep <keyword>` | Filter piped command output | `cat /etc/snort/snort.conf | grep output` |
 
 ```bash
 # Filter and display only lines containing 'output'
@@ -150,3 +150,7 @@ sed s/mysql/MySQL/g /etc/snort/snort.conf > snort2.conf && grep MySQL snort2.con
 ## Quick Start
 
 Open terminal $\rightarrow$ Use `head`/`tail` to preview files $\rightarrow$ Use `nl` to find line numbers $\rightarrow$ Filter text with `grep` $\rightarrow$ Modify contents with `sed` $\rightarrow$ Inspect interactive output using `less`
+
+```
+
+```
