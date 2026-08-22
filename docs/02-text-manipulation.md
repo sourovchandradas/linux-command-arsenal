@@ -1,4 +1,4 @@
-# Linux Text Manipulation
+# Text Manipulation
 
 ## Table of Contents
 
