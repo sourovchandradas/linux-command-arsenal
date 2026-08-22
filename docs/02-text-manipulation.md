@@ -71,7 +71,7 @@ nl /etc/snort/snort.conf
 | Command | Usage | Example |
 | --- | --- | --- |
 | `grep <keyword> <file>` | Search for a specific word/phrase | `grep output /etc/snort/snort.conf` |
-| `<command> | grep <keyword>` | Filter piped command output | `cat /etc/snort/snort.conf | grep output` |
+| `<command> \| grep <keyword>` | Filter piped command output | `cat /etc/snort/snort.conf \| grep output` |
 
 ```bash
 # Filter and display only lines containing 'output'
@@ -124,10 +124,10 @@ less /etc/snort/snort.conf
 ## Key Tips
 
 * **Case Sensitivity** — `sed` and `grep` are case-sensitive by default (`mysql` $\neq$ `MySQL`).
-* **Blank Lines in `nl**` — `nl` automatically skips numbering blank lines.
-* **Global Flag (`g`) in `sed**` — Omitting `g` in `sed` will only replace the first match on each line.
+* **Blank Lines in `nl`** — `nl` automatically skips numbering blank lines.
+* **Global Flag (`g`) in `sed`** — Omitting `g` in `sed` will only replace the first match on each line.
 * **Stream Redirection (`>`)** — Using `>` redirects command output into a new file rather than displaying it in the terminal.
-* **Search Navigation in `less**` — Type `/` followed by a string inside `less` to find keywords, then press `n` for subsequent matches.
+* **Search Navigation in `less`** — Type `/` followed by a string inside `less` to find keywords, then press `n` for subsequent matches.
 
 ---
 
@@ -151,6 +151,3 @@ sed s/mysql/MySQL/g /etc/snort/snort.conf > snort2.conf && grep MySQL snort2.con
 
 Open terminal $\rightarrow$ Use `head`/`tail` to preview files $\rightarrow$ Use `nl` to find line numbers $\rightarrow$ Filter text with `grep` $\rightarrow$ Modify contents with `sed` $\rightarrow$ Inspect interactive output using `less`
 
-```
-
-```
