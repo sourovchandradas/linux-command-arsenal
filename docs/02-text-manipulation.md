@@ -2,16 +2,16 @@
 
 ## Table of Contents
 
-* [Introduction](https://www.google.com/search?q=%23introduction)
-* [Basic File Viewing](https://www.google.com/search?q=%23basic-file-viewing)
-* [Head and Tail Commands](https://www.google.com/search?q=%23head-and-tail-commands)
-* [Line Numbering](https://www.google.com/search?q=%23line-numbering)
-* [Filtering with grep](https://www.google.com/search?q=%23filtering-with-grep)
-* [Find and Replace with sed](https://www.google.com/search?q=%23find-and-replace-with-sed)
-* [Paged Viewing with More and Less](https://www.google.com/search?q=%23paged-viewing-with-more-and-less)
-* [Key Tips](https://www.google.com/search?q=%23key-tips)
-* [Quick Command Chains](https://www.google.com/search?q=%23quick-command-chains)
-* [Quick Start](https://www.google.com/search?q=%23quick-start)
+- [Introduction](#introduction)
+- [Basic File Viewing](#basic-file-viewing)
+- [Head and Tail Commands](#head-and-tail-commads)
+- [Line Numbering](#line-numbering)
+- [Filtering with grep](#filtering-with-grep)
+- [Find and Replace with sed](#find-and-replace-with-sed)
+- [Paged Viewing with More and Less](#paged-viewing-with-more-less)
+- [Key Tips](#key-tips)
+- [Quick Command Chains](#quick-command-chains)
+- [Quick Start](#quick-start)
 
 ---
 
