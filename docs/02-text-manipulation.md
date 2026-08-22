@@ -4,7 +4,7 @@
 
 - [Introduction](#introduction)
 - [Basic File Viewing](#basic-file-viewing)
-- [Head and Tail Commands](#head-and-tail-commads)
+- [Head and Tail Commands](#head-and-tail-commands)
 - [Line Numbering](#line-numbering)
 - [Filtering with grep](#filtering-with-grep)
 - [Find and Replace with sed](#find-and-replace-with-sed)
