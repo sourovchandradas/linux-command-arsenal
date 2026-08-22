@@ -8,7 +8,7 @@
 - [Line Numbering](#line-numbering)
 - [Filtering with grep](#filtering-with-grep)
 - [Find and Replace with sed](#find-and-replace-with-sed)
-- [Paged Viewing with More and Less](#paged-viewing-with-more-less)
+- [Paged Viewing with More and Less](#paged-viewing-with-more-and-less)
 - [Key Tips](#key-tips)
 - [Quick Command Chains](#quick-command-chains)
 - [Quick Start](#quick-start)
