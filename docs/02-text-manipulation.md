@@ -71,7 +71,7 @@ nl /etc/snort/snort.conf
 | Command | Usage | Example |
 | --- | --- | --- |
 | `grep <keyword> <file>` | Search for a specific word/phrase | `grep output /etc/snort/snort.conf` |
-| `<command> | grep <keyword>` | Filter piped command output | `cat /etc/snort/snort.conf | grep output` |
+| `<command> /| grep <keyword>` | Filter piped command output | `cat /etc/snort/snort.conf | grep output` |
 
 ```bash
 # Filter and display only lines containing 'output'
