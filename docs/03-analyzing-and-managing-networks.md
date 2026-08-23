@@ -129,10 +129,10 @@ cat /etc/hosts
 
 ## Key Tips
 
-* **Tab Separation in `/etc/hosts**` — Always press `Tab` between the IP address and domain name inside `/etc/hosts` (do not use spaces).
+* **Tab Separation in `/etc/hosts`** — Always press `Tab` between the IP address and domain name inside `/etc/hosts` (do not use spaces).
 * **Interface Down Required** — Always take down the interface (`ifconfig eth0 down`) before modifying its MAC address.
-* **DHCP Overwrites `/etc/resolv.conf**` — Renewing a DHCP IP lease using `dhclient` will overwrite manual changes in `/etc/resolv.conf`.
-* **Wireless Modes in `iwconfig**` — Cracking wireless networks requires switching adapters from `Managed` mode to `Monitor` or `Promiscuous` mode.
+* **DHCP Overwrites `/etc/resolv.conf`** — Renewing a DHCP IP lease using `dhclient` will overwrite manual changes in `/etc/resolv.conf`.
+* **Wireless Modes in `iwconfig`** — Cracking wireless networks requires switching adapters from `Managed` mode to `Monitor` or `Promiscuous` mode.
 * **Silent Success in Linux** — Successful execution of `ifconfig` configuration commands yields no terminal output and returns straight to the prompt.
 
 ---
