@@ -2,16 +2,16 @@
 
 ## Table of Contents
 
-* [Introduction](https://www.google.com/search?q=%23introduction)
-* [Analyzing Network Interfaces](https://www.google.com/search?q=%23analyzing-network-interfaces)
-* [Configuring IP and Network Parameters](https://www.google.com/search?q=%23configuring-ip-and-network-parameters)
-* [Spoofing MAC Addresses](https://www.google.com/search?q=%23spoofing-mac-addresses)
-* [DHCP IP Reassignment](https://www.google.com/search?q=%23dhcp-ip-reassignment)
-* [DNS Reconnaissance and Configuration](https://www.google.com/search?q=%23dns-reconnaissance-and-configuration)
-* [Local IP Mapping with /etc/hosts](https://www.google.com/search?q=%23local-ip-mapping-with-etchosts)
-* [Key Tips](https://www.google.com/search?q=%23key-tips)
-* [Quick Command Chains](https://www.google.com/search?q=%23quick-command-chains)
-* [Quick Start](https://www.google.com/search?q=%23quick-start)
+- [Introduction](#introduction)
+- [Analyzing Network Interfaces](#analyzing-network-interfaces)
+- [Configuring IP and Network Parameters](#configuring-ip-and-network-parameters)
+- [Spoofing MAC Addresses](#spoofing-mac-addresses)
+- [DHCP IP Reassignment](#dhcp-ip-reassignment)
+- [DNS Reconnaissance and Configuration](#dns-reconnaissance-and-configuration)
+- [Local IP Mapping with /etc/hosts](#local-ip-mapping-with-etchosts)
+- [Key Tips](#key-tips)
+- [Quick Command Chains](#quick-command-chains)
+- [Quick Start](#quick-start)
 
 ---
 
