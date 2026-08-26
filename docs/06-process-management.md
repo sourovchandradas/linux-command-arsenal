@@ -186,7 +186,7 @@ at> /root/myscanningscript
 * **PID Reliance** — Commands like `kill`, `renice`, and `fg` strictly require the numerical **PID**, whereas `killall` operates on the executable **Name**.
 * **Root Privilege for High Priority** — Standard users can only increase niceness (lower priority). Assigning negative nice values ($-1$ to $-20$) requires `root` rights.
 * **`kill -9` Safety** — Reserve `SIGKILL (-9)` for stubborn/rogue binaries because it does not allow applications to run cleanup routines before closing.
-* **Saving Shell Space** — Always append `&` when opening GUI applications (e.g., `leafpad file &`, `wireshark &`) from CLI to avoid locking up your active terminal shell.
+* **Saving Shell Space** — Always append `&` when opening GUI applications (e.g., `mousepad file &`, `wireshark &`) from CLI to avoid locking up your active terminal shell.
 
 ---
 
