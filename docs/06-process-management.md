@@ -137,7 +137,7 @@ Running long-duration tasks in the background prevents shell lockup and frees th
 
 ```bash
 # Launch text editor in background to keep shell operational
-leafpad newscript &
+mousepad newscript &
 
 # Bring background task (PID 1234) back to active foreground shell
 fg 1234
