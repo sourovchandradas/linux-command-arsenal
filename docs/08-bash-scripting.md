@@ -171,7 +171,7 @@ cat MySQLscan2
 
 ```bash
 # Create script, set executable permissions, and open in editor
-touch scanner.sh && chmod 755 scanner.sh && leafpad scanner.sh
+touch scanner.sh && chmod 755 scanner.sh && mousepad scanner.sh
 
 # Run script, filter output for specific open ports, and save log
 ./scanner.sh | grep "3306/open" | tee active_db_hosts.txt
