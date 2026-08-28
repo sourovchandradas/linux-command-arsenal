@@ -34,7 +34,7 @@ Bash scripting automates terminal commands, combines multiple utilities, and cre
 
 ```bash
 # 1. Create script file using a text editor
-leafpad FirstScript.sh
+mousepad FirstScript.sh
 
 # 2. Add shebang and commands
 #!/bin/bash
