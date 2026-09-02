@@ -8,7 +8,7 @@
 * [Proxy Servers & ProxyChains](#proxy-servers--proxychains)
 * [Virtual Private Networks (VPNs)](#virtual-private-networks-vpns)
 * [Encrypted Email Services](#encrypted-email-services)
-* [Key Tips](https://www.google.com/search?q=%23key-tips)
+* [Key Tips](#key-tips)
 * [Quick Command Chains](#quick-command-chains)
 * [Quick Start](#quick-start)
 
