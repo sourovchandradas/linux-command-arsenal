@@ -1,4 +1,4 @@
-# Chapter 12: Using and Abusing Services
+# Using and Abusing Services
 
 ## Table of Contents
 
