@@ -1,4 +1,4 @@
-# Chapter 14: Understanding and Inspecting Wireless Networks
+# Understanding and Inspecting Wireless Networks
 
 ## Table of Contents
 
