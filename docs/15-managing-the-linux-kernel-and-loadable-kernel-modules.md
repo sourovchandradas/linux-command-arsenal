@@ -18,20 +18,20 @@
 Operating systems consist of two primary operational domains: **Kernel Space** and **User Land**. The kernel acts as the central control mechanism, managing system memory, CPU execution, hardware interactions, device drivers, and core services.
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                       USER LAND                         │
-│   (User applications, CLI utilities, unprivileged services) │
-└────────────────────────────┬────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                       USER LAND                                 │
+│     (User applications, CLI utilities, unprivileged services)   │
+└────────────────────────────┬────────────────────────────────────┘
                              │ System Calls
-┌────────────────────────────▼────────────────────────────┐
-│                      KERNEL SPACE                       │
-│    (Privileged access, memory management, CPU control)  │
-└────────────────────────────┬────────────────────────────┘
+┌────────────────────────────▼────────────────────────────────────┐
+│                       KERNEL SPACE                              │
+│        (Privileged access, memory management, CPU control)      │
+└────────────────────────────┬────────────────────────────────────┘
                              │ Direct Hardware Access
-┌────────────────────────────▼────────────────────────────┐
-│                        HARDWARE                         │
-│            (CPU, RAM, Hard Drives, NICs, GPUs)          │
-└─────────────────────────────────────────────────────────┘
+┌────────────────────────────▼────────────────────────────────────┐
+│                         HARDWARE                                │
+│                (CPU, RAM, Hard Drives, NICs, GPUs)              │
+└─────────────────────────────────────────────────────────────────┘
 
 ```
 
