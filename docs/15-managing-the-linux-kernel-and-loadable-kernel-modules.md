@@ -19,7 +19,7 @@ Operating systems consist of two primary operational domains: **Kernel Space** a
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                       USER LAND                                 │
+│                         USER LAND                               │
 │     (User applications, CLI utilities, unprivileged services)   │
 └────────────────────────────┬────────────────────────────────────┘
                              │ System Calls
